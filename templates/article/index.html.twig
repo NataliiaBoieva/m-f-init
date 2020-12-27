@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mindful Beauty{% endblock %}
+
+{% block body %}
+    <h3 class="mb-5">
+        {{ 'What is this all about?'}}
+    </h3>
+
+     <p>
+   We manage to be good employees, mothers, wives and girlfriends, but we often lack time for ourselves. However, the desire to remain beautiful in any circumstances pushes you to find a reliable and at the same time simple way to do it. And it seems that the American artist Dwyn Larson found him. In the 1980s, a typology of female beauty developed by the famous stylist David Kibby became extremely popular in the United States. During many years of work in the fashion industry, Kibby noticed that some women have smooth outlines in the figure, rounded facial features (women with a strong beginning of yin), and others have pointed, as if carved lines in the face and figure (dominated by the beginning of yang). Depending on the interaction of Yin and Yang in appearance, the stylist identified 5 main types (Dramatic, Natural, Romantic, Gamin, Classic) and 13 of their combinations. This typology immediately became popular, because it helped to form your own style and choose a wardrobe. However, David Kibby's typology was not accurate, because it was based on the author's subjective vision of the yin / yang relationship in facial features and figure. In addition, some women complained that they could not find their own type among these Kibbies. Dwyn Larson was one of those women. The artist was fascinated by the ideas of David Kibby, but realized that it was necessary to develop a clear, objective and detailed typology that would help each woman to create her own ideal image. Larson worked on her own typology for a decade and a half, but as a result she managed to develop a thorough method of "20 types of beauty". The artist found exactly 20 female characters, formed as a result of a combination of the already mentioned Drama, Natural, Romance and Gamin. At the same time, she drew hundreds of photo-robots with possible combinations of facial features and variants of figures. For each type, Larson outlined the styles, desired materials and prints in clothing, gave advice on makeup and jewelry. We will get acquainted with these tips further.
+    </p>
+
+   <nav class="bg-dark border-bottom">
+                <div class="container">
+                    <ul>
+                        {% for article in articles %}
+                        <li><a href="{{ path('article', { slug: article.slug }) }}">{{ article }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </nav>
+
+{% endblock %}

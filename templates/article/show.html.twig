@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mindful beauty - {{ article }}{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('notification') %}
+        <div class="alert alert-info alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+    {% endfor %}
+
+    <h2 class="mb-5">{{ article.typename }}</h2>
+    <h4>{{ article.typologiesystem}}</h4>
+    <p>{{ article.text }}</p>
+
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            {% if comments|length > 0 %}
+                {% for comment in comments %}
+                    <div class="media shadow border rounded-lg p-3 mb-4">
+                        
+                        <div class="media-body">
+                            <h4 class="font-weight-light mb-0">
+                                {{ comment.author }}
+                            </h4>
+
+                            <div class="mb-2">
+                                <small class="text-muted text-uppercase">
+                                    {{ comment.createdAt|format_datetime('medium', 'short') }}
+                                </small>
+                            </div>
+
+                            <div class="comment-text">
+                                {{ comment.text|nl2br }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if previous >= 0 %}
+                    <a href="{{ path('article', { slug: article.slug, offset: previous }) }}">Previous</a>
+                {% endif %}
+                {% if next < comments|length %}
+                    <a href="{{ path('article', { slug: article.slug, offset: next }) }}">Next</a>
+                {% endif %}
+            {% else %}
+                <div class="text-center">
+                    No comments have been posted yet for this article.
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="bg-dark shadow border rounded-lg p-4">
+                <h3 class="font-weight-dark">
+                    Add your own feedback
+                </h3>
+
+                {{ form(comment_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
