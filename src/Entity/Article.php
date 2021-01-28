@@ -60,6 +60,7 @@ class Article
 
     public function __construct()
     {
+        $this->updatedAt = new \DateTime();    
         $this->comments = new ArrayCollection();
     }
     public function __toString(): string
@@ -168,12 +169,12 @@ class Article
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
