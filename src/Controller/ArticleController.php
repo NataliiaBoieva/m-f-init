@@ -95,4 +95,16 @@ class ArticleController extends AbstractController
             'comment_form' => $form->createView(),
         ]));
     }
+
+    public function showPostUpdate(NotifierInterface $notifier, ArticleRepository $articleRepository): Response
+    {         
+     $this->entityManager->flush();
+     $notifier->send(new Notification('There are updated articles available.', ['browser']));
+    
+     return new Response($this->twig->render('article/index.html.twig', [
+        'articles' => $articleRepository->findAll(),
+    ]));
+  
+
+    }
  }

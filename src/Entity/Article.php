@@ -11,6 +11,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+
  * @UniqueEntity("slug")
  */
 class Article
@@ -52,13 +53,18 @@ class Article
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
     }
     public function __toString(): string
        {
-           return $this->typename.' '.$this->typologiesystem;
+           return $this->typename;
        }
     public function getId(): ?int
     {
@@ -161,4 +167,18 @@ class Article
 
         return $this;
     }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+   
 }

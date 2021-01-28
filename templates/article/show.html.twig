@@ -11,7 +11,12 @@
     {% endfor %}
 
     <h2 class="mb-5">{{ article.typename }}</h2>
-    <h4>{{ article.typologiesystem}}</h4>
+    <h5>{{ article.typologiesystem}} System</h5>
+    <div class="mb-2">
+        <small class="text-muted text-uppercase">
+        Updated {{ article.updatedAt|format_datetime('medium', 'short') }}
+        </small>
+    </div>
     <p>{{ article.text }}</p>
 
     <div class="row">
